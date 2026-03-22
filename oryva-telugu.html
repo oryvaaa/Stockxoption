@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>ORYVA – Expert Stock Market Signals</title>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1881162629343171');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1881162629343171&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@500;600;700&family=Noto+Sans+Telugu:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: #060e06;
+      color: #e8f5e9;
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(0,200,83,0.035) 40px),
+        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(0,200,83,0.035) 40px);
+      pointer-events: none;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(0,200,83,0.13) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .screen {
+      position: relative;
+      z-index: 1;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      padding: 0 16px 14px;
+    }
+
+    .ticker {
+      display: flex;
+      gap: 12px;
+      padding: 8px 0 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      border-bottom: 1px solid rgba(240,180,41,0.12);
+      flex-shrink: 0;
+    }
+    .tick { display: flex; align-items: center; gap: 4px; }
+    .tick-name { color: #5a8a5c; }
+    .up { color: #00c853; }
+    .dn { color: #ff4444; }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0 8px;
+      flex-shrink: 0;
+    }
+
+    .logo-icon {
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, #f0b429, #d97706);
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+      animation: glow 2.5s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%,100% { box-shadow: 0 0 24px rgba(240,180,41,0.45); }
+      50%      { box-shadow: 0 0 40px rgba(240,180,41,0.75); }
+    }
+
+    .brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 42px;
+      letter-spacing: 3px;
+      background: linear-gradient(130deg, #f0b429 30%, #ffd666);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+    .tagline {
+      font-size: 12px;
+      color: #5a8a5c;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(240,180,41,0.08);
+      border: 1px solid rgba(240,180,41,0.28);
+      border-radius: 40px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #f0b429;
+      letter-spacing: 0.3px;
+      flex-shrink: 0;
+      margin-bottom: 8px;
+    }
+
+    .telugu-hook {
+      background: linear-gradient(90deg, rgba(0,200,83,0.09), rgba(0,200,83,0.03));
+      border: 1px solid rgba(0,200,83,0.22);
+      border-left: 3px solid #00c853;
+      border-radius: 10px;
+      padding: 9px 14px;
+      flex-shrink: 0;
+      margin-bottom: 10px;
+    }
+    .te {
+      font-family: 'Noto Sans Telugu', sans-serif;
+      font-size: 14px;
+      color: #00c853;
+      font-weight: 700;
+    }
+    .en {
+      font-size: 11px;
+      color: #5a8a5c;
+      letter-spacing: 0.4px;
+      margin-top: 2px;
+    }
+
+    .proof {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      flex-shrink: 0;
+      margin-bottom: 10px;
+    }
+    .proof-box {
+      background: #0d1a0e;
+      border: 1px solid rgba(240,180,41,0.14);
+      border-radius: 10px;
+      padding: 10px 6px;
+      text-align: center;
+    }
+    .proof-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      color: #00c853;
+      line-height: 1;
+    }
+    .proof-label {
+      font-size: 10px;
+      color: #5a8a5c;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-top: 2px;
+    }
+
+    .sec-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      letter-spacing: 3px;
+      color: #f0b429;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      margin-bottom: 8px;
+    }
+    .sec-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(240,180,41,0.35), transparent);
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      flex-shrink: 0;
+      margin-bottom: 10px;
+    }
+    .spec-item {
+      background: #0d1a0e;
+      border: 1px solid rgba(240,180,41,0.12);
+      border-radius: 9px;
+      padding: 9px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .spec-icon { font-size: 16px; flex-shrink: 0; }
+    .spec-text { font-size: 12px; font-weight: 600; color: #c8e6c9; line-height: 1.25; }
+
+    .cap-card {
+      background: linear-gradient(90deg, rgba(0,200,83,0.08), rgba(0,200,83,0.03));
+      border: 1px solid rgba(0,200,83,0.2);
+      border-radius: 10px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+      margin-bottom: 12px;
+    }
+    .cap-icon { font-size: 28px; flex-shrink: 0; }
+    .cap-title { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: #f0b429; letter-spacing: 0.5px; }
+    .cap-desc { font-size: 11px; color: #5a8a5c; line-height: 1.4; }
+
+    .cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #00c853, #007c32);
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 2px;
+      padding: 16px;
+      border-radius: 13px;
+      text-decoration: none;
+      width: 100%;
+      flex-shrink: 0;
+      animation: cta-pulse 2s ease-in-out infinite;
+    }
+    @keyframes cta-pulse {
+      0%,100% { box-shadow: 0 0 28px rgba(0,200,83,0.4); }
+      50%      { box-shadow: 0 0 48px rgba(0,200,83,0.65); }
+    }
+    .cta-sub {
+      text-align: center;
+      font-size: 11px;
+      color: #5a8a5c;
+      margin-top: 6px;
+      letter-spacing: 0.4px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+<div class="screen">
+
+  <div class="ticker">
+    <div class="tick"><span class="tick-name">BANKNIFTY</span>&nbsp;<span class="dn">▼ 0.18%</span></div>
+    <div class="tick"><span class="tick-name">SENSEX</span>&nbsp;<span class="up">▲ 0.52%</span></div>
+    <div class="tick"><span class="tick-name">NIFTY</span>&nbsp;<span class="up">▲ 0.31%</span></div>
+  </div>
+
+  <div class="hero">
+    <div class="logo-icon">📈</div>
+    <div>
+      <div class="brand">ORYVA</div>
+      <div class="tagline">Expert Stock Market Research &amp; Signals</div>
+    </div>
+  </div>
+
+  <div class="badge">⭐ 12+ Years of Market Experience</div>
+
+  <div class="telugu-hook">
+    <div class="te" style="font-family:'Rajdhani',sans-serif; font-size:15px;">Your Trading Journey Is About To Change</div>
+    <div class="en">Accurate signals · Timestamped proof · Real results</div>
+  </div>
+
+  <div class="proof">
+    <div class="proof-box"><div class="proof-num">12+</div><div class="proof-label">Yrs Active</div></div>
+    <div class="proof-box"><div class="proof-num">5000+</div><div class="proof-label">Members</div></div>
+    <div class="proof-box"><div class="proof-num">92%</div><div class="proof-label">Accuracy</div></div>
+  </div>
+
+  <div class="sec-label">SPECIALIZED IN</div>
+  <div class="spec-grid">
+    <div class="spec-item"><span class="spec-icon">📊</span><span class="spec-text">Index Option Intraday</span></div>
+    <div class="spec-item"><span class="spec-icon">🔄</span><span class="spec-text">Swing Trading</span></div>
+    <div class="spec-item"><span class="spec-icon">📉</span><span class="spec-text">Trend &amp; Technical Analysis</span></div>
+    <div class="spec-item"><span class="spec-icon">💡</span><span class="spec-text">Real Market Daily Calls</span></div>
+    <div class="spec-item"><span class="spec-icon">🛡️</span><span class="spec-text">Risk Management</span></div>
+    <div class="spec-item"><span class="spec-icon">📅</span><span class="spec-text">Daily/Weekly Updates</span></div>
+  </div>
+
+  <div class="cap-card">
+    <div class="cap-icon">💰</div>
+    <div>
+      <div class="cap-title">Min. ₹50,000 Capital Required</div>
+      <div class="cap-desc">Optimized for ₹50K+ accounts — proper lot sizing &amp; risk management.</div>
+    </div>
+  </div>
+
+  <a class="cta-btn" href="https://wa.me/message/3NNPJCVESCOXE1" target="_blank">
+    💬 &nbsp;JOIN ON WHATSAPP
+  </a>
+  <div class="cta-sub">✅ Free Trial &nbsp;·&nbsp; 🚫 No Spam &nbsp;·&nbsp; 🚪 Exit Anytime</div>
+
+</div>
+</body>
+</html>
