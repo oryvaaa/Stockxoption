@@ -319,11 +319,24 @@
     </div>
   </div>
 
-  <a class="cta-btn" href="https://wa.me/message/3NNPJCVESCOXE1" target="_blank">
+  <a class="cta-btn" href="https://chat.whatsapp.com/IglaFAg0EumGE9SwHfccGN" target="_blank">
     💬 &nbsp;JOIN ON WHATSAPP
   </a>
   <div class="cta-sub">✅ Free Trial &nbsp;·&nbsp; 🚫 No Spam &nbsp;·&nbsp; 🚪 Exit Anytime</div>
 
 </div>
+  <script>
+  let time = 3;
+  let countdown = setInterval(function() {
+    time--;
+    if(time <= 0) {
+      clearInterval(countdown);
+      if(typeof fbq !== 'undefined'){
+        fbq('track','Subscribe');
+      }
+      window.location.href = "https://chat.whatsapp.com/IglaFAg0EumGE9SwHfccGN";
+    }
+  }, 1000);
+  </script>
 </body>
 </html>
