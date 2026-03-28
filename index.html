@@ -324,8 +324,6 @@
   let time = 0;
   let countdown = setInterval(function() {
     time--;
-    if(time = 0) {
-      clearInterval(countdown);
       if(typeof fbq !== 'undefined'){
         fbq('track','Subscribe');
       }
